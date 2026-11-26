@@ -1,17 +1,24 @@
-# From Orientation to Finals: Can a Start-of-Term Survey Predict Student Depression?
+# Spark Check: Early Depression Screening for University Students
 
-McGill INSY 674 — Group Project (Fall 2026)
+Can a short survey at the start of term flag students who will need support by finals?
+A pilot screening model for university wellness services, built with the StudentLife dataset at McGill (Fall 2026).
 
-## Group 1
-| Name | GitHub |
-|---|---|
-| Maria Bssadh | @mariabssadh1-droid |
-| Diana Oliván | @dianaolig8 |
-| Prethela Parvin Zolok | @prethela-parvin |
-| Surya Jade Edakunni | @SuryaJadeEdakunni |
-| Yan-Ling Lu | @yanling-lu |
-| Natasha Sujitharaj | @natasha246 |
-| Cathy Vu | @cathyvvu |
+## In 60 seconds
+
+![Start- vs end-of-term depression scores](start_vs_end_phq9.png)
+
+- **Problem:** A one-time screening at the start of term misses students who get worse later (top-left of the chart: low at the start, at risk by finals).
+- **For:** University wellness services, as a screening aid. Not a diagnosis; staff make every decision.
+- **Key decisions:**
+  - Predicted the score (regression) instead of only a yes/no flag, because with just 7 at-risk students a binary label throws away most of the information.
+  - Prioritized recall: missing an at-risk student costs more than a false alarm.
+  - Benchmarked against the simple screening rule schools already use, not just a naive model.
+  - Kept the extreme scores: those are exactly the students the tool must catch.
+- **Result:** 49% lower prediction error than the baseline (RMSE 2.71, R² 0.74). The classifier matched, but didn't beat, the simple rule on the test set. Honest takeaway: promising pilot, needs a larger sample.
+- **My role:** Exploratory analysis, data preparation and model fine-tuning, in a team of 7.
+- **Next:** In INSY 684 we're turning this model into an app; I own the automated training pipeline (Prefect + MLflow).
+
+---
 
 ## Overview
 Can a short survey at the start of term identify students who will experience significant
@@ -77,6 +84,20 @@ Each shortlisted model was tuned with **`RandomizedSearchCV`**, searching both m
 - Self-reported, single-cohort data limits generalizability
 - This is a pilot proof of value, not a validated screening system
 
+## Team
+
+Built by a team of seven in McGill's Master of Management in Analytics (INSY 674, Fall 2026).
+
+| Name | GitHub |
+|---|---|
+| Maria Bssadh | @mariabssadh1-droid |
+| Diana Oliván | @dianaolig8 |
+| Prethela Parvin Zolok | @prethela-parvin |
+| Surya Jade Edakunni | @SuryaJadeEdakunni |
+| Yan-Ling Lu | @yanling-lu |
+| Natasha Sujitharaj | @natasha246 |
+| Cathy Vu | @cathyvvu |
+
 ---
 
 ## Repository Structure
@@ -130,3 +151,4 @@ If you or someone you know is struggling, support is available:
 
 ## AI Use Disclaimer
 In preparing this assignment, our team used Claude AI and ChatGPT, two generative AI tools, to assist with the initial research process, troubleshooting code errors, summarizing other team member's work before continuing the code, fixing grammatical errors in Markdown, summarizing the highlighted sections into the GitHub README, and formatting the references section. All content produced with AI assistance was critically reviewed, verified, and edited by all team members and reflects our understanding of the assignment. All team members take full responsibility for the accuracy and academic integrity of the final submitted work.
+
